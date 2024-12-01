@@ -4,8 +4,8 @@ from boto3 import s3
 from firebase_admin.exceptions import FirebaseError
 from flask import Blueprint, jsonify
 
-from project.backend.firebase_config.firebase_client import FirebaseClient
-from project.backend.supabase_config.supabase_client import SupabaseClient
+from firebase_config.firebase_client import FirebaseClient
+from supabase_config.supabase_client import SupabaseClient
 
 supabase_url = os.getenv("SUPABASE_URL")
 supabase_api_key = os.getenv("SUPABASE_API_KEY")

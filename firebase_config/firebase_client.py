@@ -1,7 +1,7 @@
 import firebase_admin
 from firebase_admin import credentials, firestore
 
-from project.backend.models.question_answer import QuestionAnswer
+from models.question_answer import QuestionAnswer
 
 
 class FirebaseClient:

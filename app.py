@@ -3,7 +3,7 @@ import os
 from dotenv import load_dotenv
 from flask import Flask
 from flask_cors import CORS
-from project.backend.api_gateway.api_gateway import api_gateway  # Import the API Gateway Blueprint
+from api_gateway.api_gateway import api_gateway  # Import the API Gateway Blueprint
 
 # Initialize Flask app
 app = Flask(__name__)
