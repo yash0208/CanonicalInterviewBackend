@@ -15,5 +15,6 @@ app.register_blueprint(api_gateway)
 
 if __name__ == '__main__':
     print("Running Main")
-    app.run(port=8000)
+    app.run(host='0.0.0.0', port=8000)
+
 
