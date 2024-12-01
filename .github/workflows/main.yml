@@ -1,12 +1,6 @@
 name: CI/CD Pipeline
 
-on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
+on: push
 
 jobs:
   build:
@@ -49,7 +43,8 @@ jobs:
 
     - name: Authenticate Docker to Amazon ECR
       run: |
-        $(aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 131095908738.dkr.ecr.us-east-1.amazonaws.com)
+        LOGIN_PASSWORD=$(aws ecr get-login-password --region us-east-1)
+        echo $LOGIN_PASSWORD | docker login --username AWS --password-stdin 131095908738.dkr.ecr.us-east-1.amazonaws.com
 
     - name: Authenticate Docker to Docker Hub
       uses: docker/login-action@v2
@@ -65,17 +60,11 @@ jobs:
       run: |
         docker tag canonical-inteview:latest 131095908738.dkr.ecr.us-east-1.amazonaws.com/canonical-inteview:latest
 
+
     - name: Push Docker image to Amazon ECR
       run: |
         docker push 131095908738.dkr.ecr.us-east-1.amazonaws.com/canonical-inteview:latest
 
-    - name: Tag Docker image for Docker Hub
-      run: |
-        docker tag canonical-inteview:latest ${{ secrets.DOCKER_USERNAME }}/flask-app:latest
-
-    - name: Push Docker image to Docker Hub
-      run: |
-        docker push ${{ secrets.DOCKER_USERNAME }}/flask-app:latest
 
   deploy:
     name: Deploy to AWS ECS
