@@ -1,0 +1,7 @@
+Flask
+python-dotenv
+firebase-admin
+requests
+boto3
+flask-cors
+supabase-py

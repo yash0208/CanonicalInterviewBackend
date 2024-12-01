@@ -1,0 +1,12 @@
+version: '3.8'
+services:
+  app:
+    build: .
+    ports:
+      - "8081:8081"
+    environment:
+      SUPABASE_URL: "http://isjuxuwvanxjolymmtjk.supabase.co"
+      SUPABASE_API_KEY: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlzanV4dXd2YW54am9seW1tdGprIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzI3Nzc5ODcsImV4cCI6MjA0ODM1Mzk4N30.HPIrHAj1uJs1iHW8_PbDog6CQ5iRovzL-UN4g-4qIeU"
+      CRED_URL: "https://canonocal-config-bucket.s3.us-east-1.amazonaws.com/canonicalinterview-66579-firebase-adminsdk-1bb6p-1574c823c0.json"
+    volumes:
+      - .:/app
