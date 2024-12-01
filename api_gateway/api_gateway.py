@@ -17,7 +17,6 @@ api_gateway = Blueprint('api_gateway', __name__)
 
 @api_gateway.route('/questions/technical', methods=['GET'])
 def get_technical_questions():
-    print("callled")
     try:
         # Fetch all technical questions from Supabase
         print("calling url "+supabase_url)
