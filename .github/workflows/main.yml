@@ -43,7 +43,8 @@ jobs:
 
     - name: Authenticate Docker to Amazon ECR
       run: |
-        $(aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 131095908738.dkr.ecr.us-east-1.amazonaws.com)
+        LOGIN_PASSWORD=$(aws ecr get-login-password --region us-east-1)
+        echo $LOGIN_PASSWORD | docker login --username AWS --password-stdin 131095908738.dkr.ecr.us-east-1.amazonaws.com
 
     - name: Authenticate Docker to Docker Hub
       uses: docker/login-action@v2
