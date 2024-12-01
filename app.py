@@ -14,5 +14,6 @@ load_dotenv()
 app.register_blueprint(api_gateway)
 
 if __name__ == '__main__':
-    app.run(port=8081)
+    print("Running Main")
+    app.run(port=8000)
 
