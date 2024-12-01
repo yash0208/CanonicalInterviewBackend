@@ -60,6 +60,7 @@ jobs:
       run: |
         docker tag canonical-inteview:latest 131095908738.dkr.ecr.us-east-1.amazonaws.com/canonical-inteview:latest
 
+
     - name: Push Docker image to Amazon ECR
       run: |
         docker push 131095908738.dkr.ecr.us-east-1.amazonaws.com/canonical-inteview:latest
