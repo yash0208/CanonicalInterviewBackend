@@ -65,13 +65,6 @@ jobs:
       run: |
         docker push 131095908738.dkr.ecr.us-east-1.amazonaws.com/canonical-inteview:latest
 
-    - name: Tag Docker image for Docker Hub
-      run: |
-        docker tag canonical-inteview:latest ${{ secrets.DOCKER_USERNAME }}/flask-app:latest
-
-    - name: Push Docker image to Docker Hub
-      run: |
-        docker push ${{ secrets.DOCKER_USERNAME }}/flask-app:latest
 
   deploy:
     name: Deploy to AWS ECS
