@@ -11,8 +11,8 @@ CORS(app)  # Enable CORS globally (or customize as needed)
 load_dotenv()
 
 # Register the API Gateway Blueprint
-app.register_blueprint(api_gateway, url_prefix='/api')
+app.register_blueprint(api_gateway)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()
 

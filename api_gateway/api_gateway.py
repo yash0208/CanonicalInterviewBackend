@@ -1,4 +1,5 @@
 import os
+from http.client import responses
 
 from boto3 import s3
 from firebase_admin.exceptions import FirebaseError
@@ -14,6 +15,16 @@ cred_url = os.getenv('CRED_URL')
 
 # Create a Blueprint for the API
 api_gateway = Blueprint('api_gateway', __name__)
+
+@api_gateway.route('/', methods=['GET'])
+def welcome():
+    try:
+        response={
+            "message": "Welcome"
+        }
+        return jsonify(response), 200
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
 @api_gateway.route('/questions/technical', methods=['GET'])
 def get_technical_questions():
