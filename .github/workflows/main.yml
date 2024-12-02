@@ -92,7 +92,8 @@ jobs:
           sudo usermod -a -G docker ec2-user
 
           # Login to AWS ECR
-          aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 131095908738.dkr.ecr.us-east-1.amazonaws.com
+          LOGIN_PASSWORD=$(aws ecr get-login-password --region us-east-1)
+          echo $LOGIN_PASSWORD | docker login --username AWS --password-stdin 131095908738.dkr.ecr.us-east-1.amazonaws.com
 
           # Pull the latest Docker image
           sudo docker pull 131095908738.dkr.ecr.us-east-1.amazonaws.com/canonical-inteview:latest
