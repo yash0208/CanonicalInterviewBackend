@@ -82,15 +82,17 @@ jobs:
 
     - name: Deploy to EC2
       run: |
-        ssh -o StrictHostKeyChecking=no -i "${{ secrets.EC2_KEY }}" ubuntu@${{ secrets.EC2_PUBLIC_IP }} << EOF
-          # Pull the latest Docker image from ECR
-          aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 131095908738.dkr.ecr.us-east-1.amazonaws.com
-          docker pull 131095908738.dkr.ecr.us-east-1.amazonaws.com/canonical-inteview:latest
+        echo "${{ secrets.EC2_KEY }}" > private_key.pem
+        chmod 600 private_key.pem
+        ssh -o StrictHostKeyChecking=no -i private_key.pem ubuntu@${{ secrets.EC2_PUBLIC_IP }} << EOF
+        # Pull the latest Docker image from ECR
+        aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 131095908738.dkr.ecr.us-east-1.amazonaws.com
+        docker pull 131095908738.dkr.ecr.us-east-1.amazonaws.com/canonical-inteview:latest
 
-          # Stop the running container (if any)
-          docker stop canonical-container || true
-          docker rm canonical-container || true
+        # Stop the running container (if any)
+        docker stop canonical-container || true
+        docker rm canonical-container || true
 
-          # Run the new container
-          docker run -d --name canonical-container -p 80:80 131095908738.dkr.ecr.us-east-1.amazonaws.com/canonical-inteview:latest
+        # Run the new container
+        docker run -d --name canonical-container -p 80:80 131095908738.dkr.ecr.us-east-1.amazonaws.com/canonical-inteview:latest
         EOF
