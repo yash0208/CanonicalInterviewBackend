@@ -74,5 +74,5 @@ jobs:
           sudo docker rm canonical-container || true
 
           # Run the new container
-          sudo docker run -d --name canonical-container -p 80:80 canonical-inteview
+          sudo docker run -d --name canonical-container -p 8000:8000 canonical-inteview
         EOF
