@@ -85,16 +85,19 @@ jobs:
         echo "${{ secrets.EC2_KEY }}" > private_key.pem
         chmod 600 private_key.pem
         ssh -o StrictHostKeyChecking=no -i private_key.pem ec2-user@${{ secrets.EC2_PUBLIC_IP }} << EOF
-          # Ensure Docker is running
+          # Ensure Docker is installed and running
+          sudo yum update -y
+          sudo amazon-linux-extras install docker -y
           sudo systemctl start docker
-          
-          # Log in to AWS ECR
+          sudo usermod -a -G docker ec2-user
+
+          # Login to AWS ECR
           aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 131095908738.dkr.ecr.us-east-1.amazonaws.com
 
           # Pull the latest Docker image
           sudo docker pull 131095908738.dkr.ecr.us-east-1.amazonaws.com/canonical-inteview:latest
 
-          # Stop and remove the old container
+          # Stop and remove the old container if it exists
           sudo docker stop canonical-container || true
           sudo docker rm canonical-container || true
 
