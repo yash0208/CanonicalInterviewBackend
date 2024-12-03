@@ -100,8 +100,8 @@ To use the pipeline:
 ## API Endpoints
 
 - **GET /**: Welcome message to verify the app is running.
-- **GET /questions/technical**: Fetch non-technical questions from Supabase.
-- **GET /questions/nontechnical**: Fetch technical questions from Firebase.
+- **GET /questions/nontechnicaltechnical**: Fetch non-technical questions from Supabase.
+- **GET /questions/technical**: Fetch technical questions from Firebase.
 
 ## Deployment
 
