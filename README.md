@@ -1,7 +1,3 @@
-Here’s a polished **README** for your project that demonstrates professionalism and clarity:
-
----
-
 # Canonical Interview Web Application
 
 ## Overview
